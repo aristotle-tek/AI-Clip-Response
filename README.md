@@ -2,7 +2,7 @@
 
 <h1>AI Clip Response</h1>
 
-<img src="https://github.com/aristotle-tek/AI-Clip-Response/images/AI-ClipResponse.png?raw=true" alt="AI Clip Response image" />
+<img src="https://github.com/aristotle-tek/AI-Clip-Response/blob/main/images/AI-ClipResponse.png?raw=true" alt="AI Clip Response image" />
 
 A simple, flexible tool to use GPT with a set of instructions and the clipboard.
 
