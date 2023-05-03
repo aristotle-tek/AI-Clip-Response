@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Clip Response</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5XRzU6pypU6zB5X7YpH.fxY5g5Zb6l7gO5I5b5y5" crossorigin="anonymous">
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div id="app">
+        <h1>AI Clip Response</h1>
+        <textarea id="instructions" placeholder="Enter instructions here..."></textarea>
+        <button id="processText">Process Clipboard Text</button>
+        <div id="status">
+            <div id="spinner" class="hidden"></div>
+            <div id="checkmark" class="hidden">&#10004;</div>
+        </div>
+        <button id="enableDisable">Disable</button>
+    </div>
+    <button id="open-gh-button" type="button" style="position: absolute; bottom: 10px; right: 10px;">
+        <i class="fab fa-github"></i>
+    </button>
+    <script src="popup.js"></script>
+</body>
+</html>
+
