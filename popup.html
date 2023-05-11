@@ -11,7 +11,11 @@
     <div id="app">
         <h1>AI Clip Response</h1>
         <textarea id="instructions" placeholder="Enter instructions here..."></textarea>
-        <button id="processText">Process Clipboard Text</button>
+        <div id="buttons">
+            <button id="copyButton">Copy</button>
+            <button id="pasteButton">Paste</button>
+            <button id="processText">Process Text</button>
+        </div>
         <div id="status">
             <div id="spinner" class="hidden"></div>
             <div id="checkmark" class="hidden">&#10004;</div>
@@ -25,3 +29,5 @@
 </body>
 </html>
 
+            <!-- <button id="copyButton"><i class="fas fa-copy"></i></button>
+            <button id="pasteButton"><i class="fas fa-paste"></i></button> -->

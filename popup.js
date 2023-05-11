@@ -1,5 +1,22 @@
 const spinner = document.getElementById('spinner');
 const checkmark = document.getElementById('checkmark');
+const copyButton = document.getElementById('copyButton');
+const pasteButton = document.getElementById('pasteButton');
+
+// Copy button event listener
+copyButton.addEventListener('click', () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, { action: 'writeToClipboard', responseText: instructions.value });
+  });
+});
+
+// Paste button event listener
+pasteButton.addEventListener('click', () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, { action: 'readClipboard' });
+  });
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const popupPort = chrome.runtime.connect({ name: "popup" });

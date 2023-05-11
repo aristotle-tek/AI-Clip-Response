@@ -25,11 +25,12 @@ textarea {
     border-radius: 4px;
 }
 
-button {
+/* button {
     background-color: #4CAF50;
     border: none;
     border-radius: 4px;
     color: white;
+    height: 32px;
     cursor: pointer;
     font-size: 14px;
     margin: 0 5px;
@@ -53,10 +54,10 @@ button:hover {
     padding: 6px 12px;
     font-size: 12px;
     margin-bottom: 8px;
-    vertical-align: middle; /* Add this line */
-}
+    vertical-align: middle;
+} */
 
-#enableDisable:hover {
+/* #enableDisable:hover {
     background-color: #777;
 }
 
@@ -69,7 +70,7 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    vertical-align: middle; /* Add this line */
+    vertical-align: middle; 
 }
 
 #open-gh-button:hover {
@@ -78,8 +79,7 @@ button:hover {
 
 #open-gh-button i {
     font-size: 14px;
-}
-
+} */ 
 
 #status {
     display: flex;
@@ -111,3 +111,88 @@ button:hover {
 .hidden {
     display: none;
 }
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    height: 32px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px 5px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 16px; /* add this to center text vertically */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button#processText {
+    width: 112px;
+}
+
+button#copyButton,
+button#pasteButton {
+    width: 60px;
+}
+
+
+button#open-gh-button {
+    width: 48px;
+    background-color: rgb(27, 26, 26);
+}
+button#enableDisable {
+    width: 80px;
+    background-color: #999;
+}
+
+button#enableDisable:hover,
+button#open-gh-button:hover {
+    background-color: #777;
+}
+
+button#copyButton,
+button#pasteButton {
+    background-color: #3b73d4;
+}
+
+button#copyButton:hover,
+button#pasteButton:hover {
+    background-color: #2d58a3;
+}
+
+
+
+
+/* #buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  button#copyButton,
+  button#pasteButton {
+    width: 58px;
+    height: 32px;
+    padding: 8px 16px;
+    background-color: #3b73d4;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    margin: 0 5px;
+  }
+  
+  button#copyButton:hover,
+  button#pasteButton:hover {
+    background-color: #2d58a3;
+  } */
+  

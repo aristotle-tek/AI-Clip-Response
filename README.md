@@ -1,15 +1,14 @@
 <div align="center">
-
+    <!-- <img src="https://github.com/aristotle-tek/clipcomment..../images/logo.png?raw=true" alt="AI Clip Response logo" /> -->
 <h1>AI Clip Response</h1>
 
-<img src="https://github.com/aristotle-tek/AI-Clip-Response/blob/main/images/AI-ClipResponse.png?raw=true" alt="AI Clip Response image" />
-
-A simple, flexible tool to use GPT with a set of instructions and the clipboard.
+A simple but powerful tool to use GPT with a set of instructions and the clipboard.
 
 Requires an OpenAI API key (instructions below).
 </div>
 
-## Why AI Clip Response ?
+## Why use AI Clip Response ?
+
 
 ### Principles
 
@@ -27,6 +26,9 @@ Sure, you could just use ChatGPT, but for some tasks AI Clip Response can save t
 - Set instructions once then apply them multiple times to any kind of text you copy to the clipboard
 - Can be used across any window, not just within the Chrome browser, since all programs have access to the clipboard
 - Works with any Chromium-based browser, including [Chrome](https://www.google.com/chrome/), [Microsoft Edge](https://www.microsoft.com/en-us/edge) and [Brave](https://brave.com/).
+
+<!-- ## Screenshot
+![Screenshot](https://github.com/aristotle-tek/clipcomment/screenshot.png) -->
 
 
 ## Installation

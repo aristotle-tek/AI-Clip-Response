@@ -7,6 +7,23 @@ chrome.runtime.onInstalled.addListener(function (details) {
   }
 });
 
+let contentScriptReady = false;
+
+chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+  if (request.action === "processText") {
+    console.log("Received processText message in background.js");
+    if (contentScriptReady) {
+      await processText(request);
+    } else {
+      setTimeout(() => {
+        chrome.runtime.sendMessage(request);
+      }, 100);
+    }
+  } else if (request.action === 'contentScriptReady') {
+    contentScriptReady = true;
+  }
+});
+
 //tab query to get the active tab
 async function getActiveTab() {
   return new Promise((resolve) => {
@@ -15,6 +32,7 @@ async function getActiveTab() {
     });
   });
 }
+
 
 async function processText(request) {
   console.log("processText called");

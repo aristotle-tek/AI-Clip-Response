@@ -7,36 +7,39 @@ function sendProcessingComplete() {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log("request received", request);
 
-  if (request.action === "readClipboard") {
-      console.log("readClipboard action received");
-  
-      const onPaste = async (event) => {
-        console.log("onPaste called");
-        const clipboardText = event.clipboardData.getData("text");
-        console.log("clipboard text received", clipboardText);
-        document.removeEventListener("paste", onPaste);
-  
-        const instructions = await new Promise((resolve) => {
-          chrome.storage.sync.get("instructions", (data) => {
-            if (data.instructions) {
-              resolve(data.instructions);
-            } else {
-              resolve("");
-            }
-          });
+  if (request.action === "contentScriptReady") {
+    sendResponse({ ready: true });
+  } else if (request.action === "readClipboard") {
+    console.log("readClipboard action received");
+
+    const onPaste = async (event) => {
+      console.log("onPaste called");
+      const clipboardText = event.clipboardData.getData("text");
+      console.log("clipboard text received", clipboardText);
+      document.removeEventListener("paste", onPaste);
+
+      const instructions = await new Promise((resolve) => {
+        chrome.storage.sync.get("instructions", (data) => {
+          if (data.instructions) {
+            resolve(data.instructions);
+          } else {
+            resolve("");
+          }
         });
-  
-        chrome.runtime.sendMessage({
-          action: "processText",
-          instructions: instructions,
-          clipboardText: clipboardText,
-        });
-      };
-  
-      document.addEventListener("paste", onPaste);
-      document.execCommand("paste");
-  
-      return true; 
+      });
+
+      chrome.runtime.sendMessage({
+        action: "processText",
+        instructions: instructions,
+        clipboardText: clipboardText,
+      });
+
+      sendResponse({ success: true }); // Add this line
+    };
+
+    document.addEventListener("paste", onPaste);
+    document.execCommand("paste");
+
   } else if (request.action === "writeToClipboard") {
     console.log("writeToClipboard action received");
     const textArea = document.createElement("textarea");
@@ -48,11 +51,79 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       document.execCommand("copy");
       console.log("Text successfully written to clipboard");
       sendProcessingComplete();
-      sendResponse({ success: true }); // Add this line to send a response back
+      sendResponse({ success: true });
     } catch (err) {
       console.error("Error writing text to clipboard", err);
-      sendResponse({ success: false, error: err.message }); // Add this line to send a response back with an error
+      sendResponse({ success: false, error: err.message });
     }
     document.body.removeChild(textArea);
   }
 });
+
+// console.log("content.js loaded");
+
+// function sendProcessingComplete() {
+//   chrome.runtime.sendMessage({ action: 'processingComplete' });
+// }
+
+// // content.js
+// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+//   console.log("request received", request);
+
+//   if (request.action === "readClipboard") {
+//       console.log("readClipboard action received");
+
+//       // Send the 'contentScriptReady' message to the background script
+//       chrome.runtime.sendMessage({ action: 'contentScriptReady' });
+
+
+//       const onPaste = async (event) => {
+//         console.log("onPaste called");
+//         const clipboardText = event.clipboardData.getData("text");
+//         console.log("clipboard text received", clipboardText);
+//         document.removeEventListener("paste", onPaste);
+  
+//         const instructions = await new Promise((resolve) => {
+//           chrome.storage.sync.get("instructions", (data) => {
+//             if (data.instructions) {
+//               resolve(data.instructions);
+//             } else {
+//               resolve("");
+//             }
+//           });
+//         });
+  
+//         chrome.runtime.sendMessage({
+//           action: "processText",
+//           instructions: instructions,
+//           clipboardText: clipboardText,
+//         });
+//       };
+  
+//       document.addEventListener("paste", onPaste);
+//       document.execCommand("paste");
+  
+//       return true; 
+//   } else if (request.action === "writeToClipboard") {
+//     console.log("writeToClipboard action received");
+
+//     // Send the 'contentScriptReady' message to the background script
+//     chrome.runtime.sendMessage({ action: 'contentScriptReady' });
+
+//     const textArea = document.createElement("textarea");
+//     textArea.value = request.responseText;
+//     document.body.appendChild(textArea);
+//     textArea.select();
+
+//     try {
+//       document.execCommand("copy");
+//       console.log("Text successfully written to clipboard");
+//       sendProcessingComplete();
+//       sendResponse({ success: true }); // Add this line to send a response back
+//     } catch (err) {
+//       console.error("Error writing text to clipboard", err);
+//       sendResponse({ success: false, error: err.message }); // Add this line to send a response back with an error
+//     }
+//     document.body.removeChild(textArea);
+//   }
+// });
